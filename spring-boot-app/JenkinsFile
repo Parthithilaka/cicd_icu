@@ -16,7 +16,7 @@ pipeline {
         steps{
         sh 'ls -ltr'
         //sh 'apt install maven -y'
-        sh 'cd Jesnkins-pipeline/spring-boot-app && mvn clean package'
+        sh 'cd spring-boot-app && mvn clean package'
         }
     }
     }
