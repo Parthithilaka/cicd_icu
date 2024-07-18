@@ -1,7 +1,7 @@
 pipeline {
   agent {
     any {
-      image 'parthi430/ultimate-cicd-pipeline:v1'
+      image 'abhishekf5/maven-abhishek-docker-agent:v1'
       args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
     }
   }
@@ -9,17 +9,15 @@ pipeline {
     stage('Checkout') {
       steps {
         sh 'echo passed'
-        //git branch: 'main', url: 'https://github.com/Parthithilaka/Jesnkins-pipeline.git'
+        //git branch: 'main', url: 'https://github.com/Parthithilaka/cicd_test.git'
       }
     }
-    stage('Build and Test') {
-      steps {
+    stage('Build and test') {   
+        steps{
         sh 'ls -ltr'
-        
-        // build the project and create a JAR file
+        //sh 'apt install maven -y'
         sh 'cd spring-boot-app && mvn clean package'
-      }
+        }
     }
-    
-  }
+    }
 }
