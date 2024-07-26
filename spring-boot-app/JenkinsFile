@@ -13,12 +13,12 @@ pipeline {
       }
     }
     stage('Build and test') {   
-        steps{
+        steps {
         sh 'ls -ltr'
         //sh 'apt install maven -y'
         sh 'cd spring-boot-app && mvn clean package'
         sh 'echo passed'
-        }
       }
+    }
   }
 }
