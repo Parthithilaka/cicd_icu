@@ -1,24 +1,14 @@
 pipeline {
   agent {
-    any {
-      image 'abhishekf5/maven-abhishek-docker-agent:v1'
-      args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
+    docker {
+      abhishekf5/maven-abhishek-docker-agent:v1
     }
   }
-  stages {
-    stage('Checkout') {
-      steps {
-        sh 'echo passed'
-        //git branch: 'main', url: 'https://github.com/Parthithilaka/cicd_test.git'
-      }
-    }
-    stage('Build and test') {   
-        steps {
-        sh 'ls -ltr'
-        //sh 'apt install maven -y'
-        sh 'cd spring-boot-app && mvn clean package' //
-        sh 'echo passed'
-      }
+  stages{
+    stage('SCM checkout'){
+      
+      echo "successfully checkout the SCM"
+
     }
   }
 }
