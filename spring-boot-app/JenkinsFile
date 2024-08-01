@@ -1,14 +1,13 @@
 pipeline {
   agent {
      docker {
-      image "abhishekf5/maven-abhishek-docker-agent:v1"
-       args  '-v /tmp:/tmp'
+      image "parthi430/ultimate-cicd-pipeline:v1"
     }
   }
   stages {
     stage('SCM checkout'){
       steps {
-          sh 'echo passed'
+          sh "echo passed"
       }
     }
   }
