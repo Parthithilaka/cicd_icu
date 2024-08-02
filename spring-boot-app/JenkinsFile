@@ -17,5 +17,16 @@ pipeline {
         sh 'cd spring-boot-app && mvn clean package'
       }
     }
+    stage {
+        environment {
+        SONAR_URL = "http://65.0.91.205:9000"
+      }
+      steps {
+        withCredentials([string(credentialsId: 'docker-cred', variable: 'SONAR_AUTH_TOKEN')]) {
+          sh 'cd spring-boot-app && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
+        }
+
+      }
+    }
   }
 }
