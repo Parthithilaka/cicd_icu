@@ -6,7 +6,10 @@ pipeline {
   }
   stages {
     stage ('SCM checout') {
-      sh "echo passed"
+      steps{
+        sh "echo passed"
+      }
+      
     }
   }
 
