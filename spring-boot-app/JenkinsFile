@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker{ 
-      image "parthi430/ultimate-cicd-pipeline:v1"
+      image "abhishekf5/maven-abhishek-docker-agent:v1"
     }
   }
   stages {
