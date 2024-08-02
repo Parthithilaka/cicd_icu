@@ -1,15 +1,14 @@
 pipeline {
   agent {
-    docker{ 
+    docker { 
       image "abhishekf5/maven-abhishek-docker-agent:v1"
     }
   }
   stages {
     stage ('SCM checout') {
-      steps{
+      steps { 
         sh "echo passed"
       }
-      
     }
     stage ('Build maven') {
       steps {
