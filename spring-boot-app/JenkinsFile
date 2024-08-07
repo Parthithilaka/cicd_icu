@@ -1,8 +1,6 @@
 pipeline {
   agent {
-    docker { 
-      image 'abhishekf5/maven-abhishek-docker-agent:v1'
-    }
+    label 'sonar'
   }
   stages {
     stage('SCM checkout') {  // Corrected typo here
@@ -17,15 +15,12 @@ pipeline {
         sh 'cd spring-boot-app && mvn clean package'
       }
     }
-    stage('Soanrqube') {
-        environment {
-        SONAR_URL = "http://52.66.112.147:9000"
-      }
-      steps {
-        withCredentials([string(credentialsId: 'docker-cred', variable: 'SONAR_AUTH_TOKEN')]) {
-          sh 'cd spring-boot-app && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
-        }
-      }
-    }
+    stage('Code Quality Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') { // replace 'SonarQube' with your SonarQube server configuration name
+                    sh 'spring-boot-app && mvn sonar:sonar'
+                }
+            }
   }
+}
 }
