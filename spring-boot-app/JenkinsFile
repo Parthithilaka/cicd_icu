@@ -19,7 +19,7 @@ pipeline {
     }
     stage('Soanrqube') {
         environment {
-        SONAR_URL = "http://65.0.91.205:9000"
+        SONAR_URL = "http://52.66.112.147:9000"
       }
       steps {
         withCredentials([string(credentialsId: 'docker-cred', variable: 'SONAR_AUTH_TOKEN')]) {
