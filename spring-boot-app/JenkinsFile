@@ -1,26 +1,14 @@
 pipeline {
   agent {
-    label 'slave01'
+    docker {
+      image "abhishekf5/maven-abhishek-docker-agent:v1"
+    }
   }
   stages {
-    stage('SCM checkout') {  // Corrected typo here
-      steps { 
-        sh 'echo passed'
-      }
-    }
-    stage('Build maven') {
+    stage {
       steps {
-        sh 'ls -ltr'
-        // build the project and create a JAR file
-        sh 'cd spring-boot-app && mvn clean package'
+        echo "passed"
       }
     }
-    stage('Code Quality Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube') { // replace 'SonarQube' with your SonarQube server configuration name
-                    sh 'spring-boot-app && mvn sonar:sonar'
-                }
-            }
   }
-}
 }
