@@ -1,0 +1,32 @@
+pipeline {
+    agent {
+        docker{
+            image <Docker_image>
+        }
+    }
+    stages {
+        stage ("SCM checkout") {
+            steps {
+                echo "scm checkout scessfully"
+            }
+        }
+        stage ('Build') {
+            steps {
+                sh "cd <move_required Folder> && mvn clean package"
+            }
+        stage ('code quality') {
+            environment {
+                SONARQUBE_URL = 'http://<ip_adress:9000>'
+                
+            }
+            steps {
+                withcredentials('[string(credentialsId: "<credName>", variable "<SONARQUBE_TOKEN>")]') {
+                    sh "cd <required_path> && mvn sonar:sonar -Dsonar.login = ${SONARQUBE_TOKEN} -Dsonar.host.url=${SONARQUBE_URL}"
+                }
+
+            }
+        }
+
+        }
+    }
+}
