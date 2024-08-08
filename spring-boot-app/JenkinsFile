@@ -10,5 +10,15 @@ pipeline {
         echo "passed"
       }
     }
+    stages ('build maven') {
+      stage {
+        steps {
+          sh "ls -lrt"
+          sh "cd sprind-boot-app"
+          sh "pwd"
+          sh "mvn clean  packages"
+        }
+      }
+    }
   }
 }
