@@ -11,6 +11,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: checkout the github repo
-      run: echo "hello"
+    - uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '21'
+        cache: 'maven'
+        cache-dependency-path: 'sub-project/pom.xml' # optional
+    - name: Build with Maven
+      run: mvn clean package
     
